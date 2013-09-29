@@ -1,13 +1,9 @@
-package com.twmacinta.util;
+package com.portail.beans;
 import java.io.IOException;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Properties;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
-import com.portail.servlet.Connexion;
 
 public class Db {
 	private String dbURL = "";
@@ -39,8 +35,7 @@ public class Db {
 			this.dbStatement.close();
 			this.dbConnect.close();
 		} catch (SQLException ex) {
-			Logger.getLogger(Connexion.class.getName()).log(Level.SEVERE, null,
-					ex);
+			System.out.println(ex.getMessage());
 		}
 	}
 

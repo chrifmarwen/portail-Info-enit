@@ -1,5 +1,8 @@
 package com.portail.beans;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
 public class User {
 	private int id_user;
 	private String name;
@@ -7,6 +10,28 @@ public class User {
 	private String mail;
 	private char gender;
 	private String birth;
+	private String password;
+	
+	public User() {
+	}
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		MessageDigest md = null;
+		try {
+			md = MessageDigest.getInstance("MD5");
+		} catch (NoSuchAlgorithmException e) {
+			e.printStackTrace();
+		}
+		md.update(password.getBytes());
+		byte[] digest = md.digest();
+		StringBuffer sb = new StringBuffer();
+		for (byte b : digest) {
+			sb.append(Integer.toHexString((int) (b & 0xff)));
+		}
+		this.password = sb.toString();
+	}
 	public int getId_user() {
 		return id_user;
 	}
